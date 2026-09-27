@@ -1,0 +1,15 @@
+BidPilot website update
+
+This version redesigns the customer-facing homepage around the BidPilot brand.
+
+Changes:
+- Products section clearly separates StudyPool Bidding Bot and EssayPro Bidding Bot.
+- Both products have 7-Day, Monthly, Quarterly and Annual plans.
+- Removed the old explanatory sentence about StudyPool keeping plans and EssayPro being Solo.
+- Added a dedicated Download Center for both products.
+- Improved responsive design for desktop, tablet and mobile.
+- Checkout still uses the existing /api/checkout/mpesa endpoint.
+- Existing server.js, licensing and payment system are preserved.
+
+IMPORTANT:
+Keep the live data/store.json from your existing production project. Do not overwrite it with a blank/new database when updating GitHub.

@@ -1,0 +1,5 @@
+BIDPILOT BOT INTEGRATION
+
+The original Studypool Auto Bidder files supplied by you are integrated into extension/content.js and extension/pusher.min.js. The popup/background now enforce server-side BidPilot license activation and one-device binding.
+
+Testing: extract a customer ZIP, open chrome://extensions, enable Developer mode, Load unpacked, select BidPilot-Extension, log into Studypool, activate a license in the extension, then refresh the Studypool questions page.

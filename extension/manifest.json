@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "BidPilot \u2014 Studypool Auto Bidder",
+  "version": "2.1.0",
+  "description": "BidPilot Studypool bidding automation with server-side license activation and one-device control.",
+  "permissions": [
+    "storage",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://www.studypool.com/*",
+    "https://studypool.com/*",
+    "https://ws-us3.pusher.com/*",
+    "https://sockjs-us3.pusher.com/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.studypool.com/*",
+        "https://studypool.com/*"
+      ],
+      "js": [
+        "pusher.min.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

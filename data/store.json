@@ -1,0 +1,55 @@
+{
+  "customers": [
+    {
+      "id": "CUS-2D66AD56D33025F68D",
+      "name": "Joshua Ndiki Mutua",
+      "email": "mutuajosh22@gmail.com",
+      "phone": "0729610092",
+      "createdAt": "2026-08-21T13:18:54.682Z"
+    }
+  ],
+  "licenses": [],
+  "payments": [
+    {
+      "id": "PAY-8BB02526B383CEC7F4",
+      "provider": "mpesa",
+      "customerId": "CUS-2D66AD56D33025F68D",
+      "plan": "trial7",
+      "usd": 2.99,
+      "kes": 389,
+      "status": "pending",
+      "createdAt": "2026-08-21T13:18:54.683Z"
+    },
+    {
+      "id": "PAY-B73C22CA594BD59575",
+      "provider": "mpesa",
+      "customerId": "CUS-2D66AD56D33025F68D",
+      "plan": "trial7",
+      "usd": 2.99,
+      "kes": 389,
+      "status": "pending",
+      "createdAt": "2026-08-21T13:18:56.506Z"
+    },
+    {
+      "id": "PAY-30668DCAC3E0E4087B",
+      "provider": "mpesa",
+      "customerId": "CUS-2D66AD56D33025F68D",
+      "plan": "trial7",
+      "usd": 2.99,
+      "kes": 389,
+      "status": "pending",
+      "createdAt": "2026-08-21T13:18:57.144Z"
+    },
+    {
+      "id": "PAY-3F40BCC572A1F1DE2C",
+      "provider": "mpesa",
+      "customerId": "CUS-2D66AD56D33025F68D",
+      "plan": "trial7",
+      "usd": 2.99,
+      "kes": 389,
+      "status": "pending",
+      "createdAt": "2026-08-21T13:18:57.970Z"
+    }
+  ],
+  "admins": []
+}

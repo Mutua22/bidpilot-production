@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Studypool Auto Bidder</title>
+<style>
+*{box-sizing:border-box}body{width:390px;margin:0;background:#0f1117;color:#e2e8f0;font:13px Arial,sans-serif}.head{padding:15px 16px;border-bottom:1px solid #252a38;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:700;letter-spacing:.05em}.pill{font-size:11px;padding:5px 9px;border-radius:14px;background:#451a03;color:#fbbf24;border:1px solid #78350f}.pill.on{background:#14532d;color:#86efac;border-color:#166534}.tabs{display:flex;border-bottom:1px solid #252a38}.tab{flex:1;background:none;border:0;color:#64748b;padding:9px;cursor:pointer}.tab.active{color:#60a5fa;border-bottom:2px solid #60a5fa}.panel{display:none;padding:15px}.panel.active{display:block}.label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px}.row{display:flex;gap:8px;align-items:center;margin-bottom:13px;flex-wrap:nowrap}.row input,.row select{min-width:0}.row>*{min-width:0}input,select{background:#171b26;border:1px solid #252a38;color:#e2e8f0;border-radius:5px;padding:8px;width:100%;outline:none}input:focus,select:focus{border-color:#4f8ef7}input[type=number]{width:100px}.mode{display:grid;grid-template-columns:1fr 1fr;gap:6px}.mode label{min-width:0;border:1px solid #252a38;border-radius:5px;padding:9px 6px;text-align:center;color:#94a3b8;cursor:pointer;line-height:1.25;font-size:11px;display:flex;align-items:center;justify-content:center;white-space:normal;overflow-wrap:anywhere}.mode input{display:none!important}.mode input:checked+span{color:#93c5fd}.mode label:has(input:checked){border-color:#4f8ef7;background:#0c1e3d}.hint{font-size:10px;color:#64748b;margin-top:7px;margin-bottom:12px;line-height:1.35;white-space:normal;overflow-wrap:anywhere}.check{display:flex;gap:8px;align-items:center;margin:10px 0;color:#94a3b8}.check input{width:auto}.btn{width:100%;border:0;border-radius:5px;padding:11px;margin-top:6px;font-weight:700;cursor:pointer}.start{background:#4f8ef7;color:white}.stop{background:#450a0a;color:#fca5a5;border:1px solid #ef4444}.save{background:#171b26;color:#93c5fd;border:1px solid #1e3a6e}.status{padding:9px;border-radius:5px;background:#171b26;border:1px solid #252a38;margin-bottom:12px;line-height:1.4}.stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.stat{background:#171b26;border:1px solid #252a38;border-radius:5px;padding:9px;text-align:center}.num{font-size:17px;font-weight:700}.small{font-size:10px;color:#64748b}.log{max-height:190px;overflow:auto;font:10px monospace;color:#94a3b8;white-space:pre-wrap}.danger{color:#fca5a5}.success{color:#86efac}.license{background:#0b1b2a;border:1px solid #25425f;border-radius:7px;padding:11px;margin-bottom:12px}.license h3{margin:0 0 7px;font-size:12px;color:#93c5fd}.license-row{display:flex;gap:6px}.license-row input{flex:1}.license-row button{width:auto;margin:0;padding:8px 10px}.license-meta{font-size:10px;color:#94a3b8;margin-top:7px;line-height:1.4}.license-good{color:#86efac}.license-bad{color:#fca5a5}</style>
+</head>
+<body>
+<div class="head"><div class="brand">BIDPILOT</div><div id="pill" class="pill">OFF</div></div>
+<div class="tabs"><button class="tab active" data-tab="bid">Bid</button><button class="tab" data-tab="filters">Filters</button><button class="tab" data-tab="logs">Logs</button></div>
+<div id="bid" class="panel active"><div class="license"><h3>LICENSE</h3><div class="license-row"><input id="licenseKey" placeholder="BP-..." autocomplete="off"><button id="activateLicense" class="btn start">ACTIVATE</button></div><div id="licenseStatus" class="license-meta">Checking license…</div></div>
+  <div id="status" class="status">Settings</div>
+  <div class="label">Minimum bid price</div>
+  <div class="row"><input id="minPrice" type="number" min="0" step="0.01" placeholder="No minimum"></div>
+  <div class="mode"><label><input type="radio" name="priceMode" value="skip"><span>Skip below minimum bidding price</span></label><label><input type="radio" name="priceMode" value="adjust"><span>Adjust to minimum bidding price</span></label></div>
+  <div class="hint">Leave blank for no minimum. This value is saved as minPrice, not maxBudget.</div>
+  <div class="label">Minimum time remaining</div>
+  <div class="row"><input id="minDeadline" type="number" min="0" step="1" placeholder="No minimum"><select id="minTimeType"><option value="2">Hours</option><option value="1">Days</option></select></div>
+  <div class="mode"><label><input type="radio" name="deadlineMode" value="skip"><span>Skip below minimum deadline</span></label><label><input type="radio" name="deadlineMode" value="adjust"><span>Adjust to minimum deadline</span></label></div>
+  <div class="hint">Choose whether to skip questions below your minimum deadline or adjust the bid to your minimum deadline.</div>
+  <button id="save" class="btn save">SAVE SETTINGS</button>
+  <button id="start" class="btn start">START BOT — STAY ON LIST PAGE</button>
+  <button id="stop" class="btn stop" style="display:none">STOP BOT</button>
+</div>
+<div id="filters" class="panel">
+  <div class="label">Maximum refund rate</div><div class="row"><input id="maxRefundRate" type="number" min="0" max="100" step="0.1" placeholder="None"> %</div>
+  <div class="label">Maximum refund rate — friends</div><div class="row"><input id="maxRefundRateFriends" type="number" min="0" max="100" step="0.1" placeholder="None"> %</div>
+  <div class="label">Subjects</div><div class="row"><input id="subjectFilter" type="text" placeholder="Writing, Nursing, Math, Science"></div>
+  <label class="check"><input id="onlyInvited" type="checkbox"> Only bid on invited questions</label>
+  <button id="save2" class="btn save">SAVE FILTERS</button>
+</div>
+<div id="logs" class="panel"><div class="stats"><div class="stat"><div id="questionsChecked" class="num">0</div><div class="small">QUESTIONS</div></div><div class="stat"><div id="bidsPlaced" class="num">0</div><div class="small">BIDS</div></div></div><div style="height:10px"></div><div id="log" class="log"></div></div>
+<script src="popup.js"></script>
+</body>
+</html>

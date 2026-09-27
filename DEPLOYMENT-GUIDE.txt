@@ -1,0 +1,72 @@
+BIDPILOT PRODUCTION DEPLOYMENT
+==============================
+
+1) LOCAL TEST
+- Extract this package.
+- Open PowerShell in the project folder.
+- npm install
+- copy .env.example .env
+- Put your local admin values in .env.
+- npm start
+- Open http://localhost:3000
+- Admin: http://localhost:3000/admin
+
+2) IMPORTANT SECRET STEP
+The Daraja Consumer Secret that was shared in chat should be rotated before production. Do not put new secrets in source code or GitHub. Put them directly into your hosting provider's Variables/Secrets.
+
+3) GITHUB
+- Create a PRIVATE GitHub repository.
+- Upload the project files.
+- Do NOT upload .env, node_modules, or data/store.json.
+
+4) RAILWAY
+- Create a Railway account and New Project.
+- Choose Deploy from GitHub repo and select the private repository. Railway detects Node.js automatically.
+- Open the service > Variables. Add every value from .env.example, including your production Daraja credentials.
+- Set BASE_URL temporarily to the Railway domain after you generate it.
+- Deploy.
+- Settings > Networking > Generate Domain.
+- Visit the generated HTTPS URL.
+
+5) PERSISTENT LICENSE DATABASE
+- Add a Railway Volume to the web service.
+- Mount path: /app/data
+- This is required because the app stores customers, payments and licenses in data/store.json. Railway documents /app/data as the correct mount for a relative ./data directory.
+
+6) CUSTOM DOMAIN
+- Railway service > Settings > Networking > Add Custom Domain.
+- Enter your domain.
+- Add the DNS record(s) Railway shows at your domain registrar.
+- Wait for HTTPS to become active.
+- Change BASE_URL to the final https://domain and redeploy.
+
+7) DARAJA PRODUCTION
+- Complete Daraja Go Live for your production app.
+- Put the production Consumer Key, Consumer Secret, Shortcode and Lipa na M-PESA Passkey into Railway Variables.
+- Set MPESA_ENV=live.
+- The callback must be: https://YOUR-DOMAIN/api/payments/mpesa/callback
+- The server only creates a license after a successful callback and matching amount.
+
+8) INTEGRATED CUSTOMER BOT
+After the final HTTPS domain is known, run in PowerShell from the project folder:
+  powershell -ExecutionPolicy Bypass -File .\build-downloads.ps1 -ServerUrl "https://YOUR-DOMAIN"
+This updates extension/config.js and rebuilds the Windows/macOS customer ZIPs. Commit/push the updated downloads and extension/config.js to GitHub so Railway redeploys the website.
+
+9) FIRST LIVE TEST
+- Open your website.
+- Open /admin and log in.
+- Create a manual 7-Day license for yourself.
+- Download the Windows ZIP.
+- Extract it.
+- chrome://extensions > Developer mode > Load unpacked > select BidPilot-Extension.
+- Open BidPilot, enter the license and Activate.
+- Open Studypool, log in, open the normal questions list and refresh.
+- Start the bot.
+- In admin, Reset device and test a second device/profile.
+- Disable the license and confirm a new license check is rejected.
+
+10) CARD/PAYPAL
+The site keeps Card and PayPal visibly planned but disabled until provider credentials and server-side webhook verification are configured. Do not enable them merely from a browser success page.
+
+11) TESTIMONIALS
+The three homepage reviews are clearly marked sample testimonials. Replace them with genuine customer feedback before presenting them as real reviews.
